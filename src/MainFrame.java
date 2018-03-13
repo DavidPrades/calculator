@@ -11,7 +11,7 @@
 public class MainFrame extends javax.swing.JFrame {
 
     private enum OperatorType {NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE}
-
+           int i;
     private double accumulator, operand;
     private OperatorType operator;
     private char decimalSeparator;
