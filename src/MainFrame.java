@@ -17,7 +17,7 @@ public class MainFrame extends javax.swing.JFrame {
     private enum OperatorType {
         NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE
     }
-   
+
     private double accumulator, operand;
     private OperatorType operator;
     private char decimalSeparator;
@@ -73,15 +73,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void displayResult() {
-        String s= ""+accumulator;
-        
-        if(s.contains(".")){
-            s=s.replaceAll("0+$", "");
-            s=s.replaceAll(".$", "");
+        String s = "" + accumulator;
+
+        if (s.contains(".")) {
+            s = s.replaceAll("0+$", "");
+            s = s.replaceAll("\\.$", "");
         }
-          textFieldDisplay.setText(s);  
+        textFieldDisplay.setText(s);
         //BigDecimal number = new BigDecimal(accumulator);  
-        
+
         //textFieldDisplay.setText(number.stripTrailingZeros().toPlainString());
     }
 
@@ -378,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnCommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommaActionPerformed
-        
+
     }//GEN-LAST:event_btnCommaActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
@@ -429,11 +429,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
         if (!erase) {
-            erase = true;
+            //erase = true;
             calculateResult();
             displayResult();
+            operator = OperatorType.NONE;
+
         }
-        
+
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
