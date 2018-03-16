@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
@@ -16,7 +17,7 @@ public class MainFrame extends javax.swing.JFrame {
     private enum OperatorType {
         NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE
     }
-    int i;
+   
     private double accumulator, operand;
     private OperatorType operator;
     private char decimalSeparator;
@@ -72,7 +73,16 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void displayResult() {
-        textFieldDisplay.setText("" + accumulator);
+        String s= ""+accumulator;
+        
+        if(s.contains(".")){
+            s=s.replaceAll("0+$", "");
+            s=s.replaceAll(".$", "");
+        }
+          textFieldDisplay.setText(s);  
+        //BigDecimal number = new BigDecimal(accumulator);  
+        
+        //textFieldDisplay.setText(number.stripTrailingZeros().toPlainString());
     }
 
     /**
@@ -232,6 +242,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        textFieldDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldDisplayActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -328,7 +344,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn2ActionPerformed
 
-
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
 
         eraseIfNeedAndWriteNumber("1");
@@ -363,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnCommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCommaActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
@@ -371,8 +386,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
-      initMyFields();
-      textFieldDisplay.setText("");
+        initMyFields();
+        textFieldDisplay.setText("");
     }//GEN-LAST:event_btnCActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -418,6 +433,7 @@ public class MainFrame extends javax.swing.JFrame {
             calculateResult();
             displayResult();
         }
+        
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -428,6 +444,10 @@ public class MainFrame extends javax.swing.JFrame {
             textFieldDisplay.setText(subs);
         }
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void textFieldDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDisplayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldDisplayActionPerformed
 
     /**
      * @param args the command line arguments
