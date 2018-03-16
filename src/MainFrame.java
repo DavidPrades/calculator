@@ -52,6 +52,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void calculateResult() {
         String s = textFieldDisplay.getText();
+        if(s.isEmpty()){
+            s="0";
+        }
         s = s.replaceAll("" + decimalSeparator, ".");
         operand = Double.parseDouble(s);
 
@@ -81,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
             s = s.replaceAll("0+$", "");
             s = s.replaceAll("\\.$", "");
         }
-        s=s.replaceAll("\\.", ""+decimalSeparator);
+        s = s.replaceAll("\\.", "" + decimalSeparator);
         textFieldDisplay.setText(s);
         //BigDecimal number = new BigDecimal(accumulator);  
 
@@ -343,7 +346,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         eraseIfNeedAndWriteNumber("2");
-
 
     }//GEN-LAST:event_btn2ActionPerformed
 
